@@ -1,4 +1,6 @@
-﻿namespace ShapesLibrary;
+﻿using ShapesLibrary.Interfaces;
+
+namespace ShapesLibrary;
 
 public class Triangle : IShape
 {
