@@ -19,8 +19,9 @@ public class Triangle : IShape
     /// </summary>
     public double GetArea()
     {
-        double p = (_sideA + _sideB + _sideC) / QuadraticFactor;
-        return Math.Sqrt(p * (p - _sideA) * (p - _sideB) * (p - _sideC));
+        ValidateSides(_sideA, _sideB, _sideC);
+        double semiperimeter = (_sideA + _sideB + _sideC) / QuadraticFactor;
+        return Math.Sqrt(semiperimeter * (semiperimeter - _sideA) * (semiperimeter - _sideB) * (semiperimeter - _sideC));
     }
 
     /// <summary>
@@ -36,5 +37,16 @@ public class Triangle : IShape
                         Math.Pow(_sideA, QuadraticFactor)) < eps ||
                Math.Abs(Math.Pow(_sideC, QuadraticFactor) + Math.Pow(_sideA, QuadraticFactor) -
                         Math.Pow(_sideB, QuadraticFactor)) < eps;
+    }
+
+    private static void ValidateSides(double a, double b, double c)
+    {
+        if (a <= 0 || b <= 0 || c <= 0)
+            throw new ArgumentException("Стороны не могут ранять 0 или быть меньше");
+
+        if (a + b <= c || a + c <= b || b + c <= a)
+        {
+            throw new ArgumentException("Стороны не образуют треугольник");
+        }
     }
 }
