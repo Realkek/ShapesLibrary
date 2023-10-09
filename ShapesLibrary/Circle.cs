@@ -2,15 +2,25 @@
 
 public class Circle : IShape
 {
-    private readonly double _radius;
+    public double Radius { get; private set; }
 
     public Circle(double radius)
     {
-        _radius = radius; 
+        Radius = radius;
     }
 
+    /// <summary>
+    /// Подсчёт площади круга по стандартной формуле 
+    /// </summary>
     public double GetArea()
     {
-        return Math.PI * _radius * _radius;
+        ValidateRadius();
+        return Math.PI * Radius * Radius;
+    }
+
+    private void ValidateRadius()
+    {
+        if (Radius < 0)
+            throw new ArgumentOutOfRangeException();
     }
 }
