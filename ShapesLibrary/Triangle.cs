@@ -42,7 +42,7 @@ public class Triangle : IShape
     private static void ValidateSides(double a, double b, double c)
     {
         if (a <= 0 || b <= 0 || c <= 0)
-            throw new ArgumentException("Стороны не могут ранять 0 или быть меньше");
+            throw new ArgumentException("Стороны не могут равняться 0 или быть меньше");
 
         if (a + b <= c || a + c <= b || b + c <= a)
         {
